@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}
+Register Farmers Details
+{% endblock title %}
+
+{% block style %}
+<style>
+    .transparent-box {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px);
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<h3 class="text-center bg-success"><span>Register Farmers Details</span> </h3>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <div class="transparent-box">
+
+        <form action="/register" method="post">
+          <div class="form-group">
+            <label for="rollno">Farmer Name</label>
+            <input type="text" class="form-control" name="farmername" id="farmername" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="nidnumber">NID Number</label>
+            <input type="number" class="form-control" name="nidnumber" id="nidnumber" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" name="age" id="age" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <select class="form-control" id="gender" name="gender" required>
+              <option selected>Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="num">Phone Number</label>
+            <input type="number" class="form-control" name="phonenumber" id="phonenumber" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" name="address" id="address" required></textarea>
+          </div>
+          <br>
+          <div class="form-group">
+            <select class="form-control" id="farmingtype" name="farmingtype" required>
+              <option selected>Select Farming</option>
+              {% for d in farming %}
+              <option value="{{d.farmingtype}}">{{d.farmingtype}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success btn-block">Save Records</button>
+        </form>
+
+      </div> <!-- End transparent box -->
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+{% endblock body %}
