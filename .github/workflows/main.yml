@@ -1,0 +1,79 @@
+            - name: Setup Python
+  uses: actions/setup-python@v5.5.0
+  with:
+    # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
+    python-version: # optional
+    # File containing the Python version to use. Example: .python-version
+    python-version-file: # optional
+    # Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv, poetry.
+    cache: # optional
+    # The target architecture (x86, x64, arm64) of the Python or PyPy interpreter.
+    architecture: # optional
+    # Set this option if you want the action to check for the latest available version that satisfies the version spec.
+    check-latest: # optional
+    # The token used to authenticate when fetching Python distributions from https://github.com/actions/python-versions. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting.
+    token: # optional, default is ${{ github.server_url == 'https://github.com' && github.token || '' }}
+    # Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies.
+    cache-dependency-path: # optional
+    # Set this option if you want the action to update environment variables.
+    update-environment: # optional, default is true
+    # When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython.
+    allow-prereleases: # optional
+    # When 'true', use the freethreaded version of Python.
+    freethreaded: # optional
+                - name: Azure MYSQL Deploy
+  uses: Azure/mysql@v1
+  with:
+    # Server name of Azure DB for Mysql. Example: fabrikam.mysql.database.azure.com. When you connect using Mysql Workbench, this is the same value that is used for Hostname in Parameters
+    server-name: 
+    # The connection string, including authentication information, for the Azure MySQL Server. (deprecated)
+    connection-string: # optional
+    # Azure MySQL Server username for login
+    username: # optional
+    # Azure MySQL Server password for login
+    password: # optional
+    # Azure MySQL Server database (optional) to connect to. No database will be used automatically.
+    database: # optional
+    # Path to SQL script file to deploy
+    sql-file: 
+    # Additional options supported by mysql simple SQL shell. These options will be applied when executing the given file on the Azure DB for Mysql.
+    arguments: # optional
+
+                - name: Setup MySQL
+  # You may pin to the exact commit or the version.
+  # uses: mirromutth/mysql-action@de1fba8b3f90ce8db80f663a7043be3cf3231248
+  uses: mirromutth/mysql-action@v1.1
+  with:
+    # The port of host
+    host port: # optional, default is 3306
+    # The port of container
+    container port: # optional, default is 3306
+    # --character-set-server - The character set of MySQL server
+    character set server: # optional, default is utf8mb4
+    # --collation-server - The character collation of MySQL server
+    collation server: # optional, default is utf8mb4_general_ci
+    # Version of MySQL to use
+    mysql version: # optional, default is latest
+    # MYSQL_ROOT_PASSWORD - root superuser password
+    mysql root password: # optional, default is 
+    # MYSQL_DATABASE - name for the default database that is created
+    mysql database: # optional, default is 
+    # MYSQL_USER - create the specified user with superuser power for created database
+    mysql user: # optional, default is 
+    # MYSQL_PASSWORD - specified superuser password which user is power for created database
+    mysql password: # optional, default is 
+
+                - name: MySQL migration
+  # You may pin to the exact commit or the version.
+  # uses: guibranco/github-mysql-migration-action@73dadd9439dba2d6c9283cb79091896f580b918f
+  uses: guibranco/github-mysql-migration-action@v0.1.27
+  with:
+    # Which operation to execute. One of: dry-run, migrate, check, integrity
+    operation: # default is migrate
+    # MariaDB/Mysql host (domain or IPv4)
+    mysql-host: # default is 127.0.0.1
+    # Database username
+    mysql-user: # default is root
+    # Database name
+    mysql-database: # default is example
+          
